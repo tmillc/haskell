@@ -1,0 +1,5 @@
+*.o
+*.hi
+helloworld-wx
+gloss-examples-1.9.4.1
+*.swp
