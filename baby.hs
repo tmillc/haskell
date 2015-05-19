@@ -51,3 +51,9 @@ agree1 "y" = "Great!"
 agree1 "n" = "Too bad"
 agree1 ('z':_) = "Zooper" -- matches anything beginning with z
 agree1 _ = "So sad" -- matches any other value
+
+-- take 10 (cycle [1,2,3]) 
+-- returns [1,2,3,1,2,3,1,2,3,1]
+-- take 4 (repeat 5)
+-- returns [5,5,5,5], but
+-- replicate 4 5 does too
