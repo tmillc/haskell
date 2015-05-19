@@ -34,8 +34,18 @@ stuff1 = [[x | x <- word, not (x `elem` "aeiou")] | word <- ["cat", "dog", "pain
 -- multiplication table, up through x
 multTable x = [[ a*b | a <- [1..x]] | b <- [1..x]]
 
+-- fun with tuples!
+multsOfFiveAndEven = [ (n, even n) | n <- [5,10..50]]
+-- Pythagorean Triples up to 10
+pythTrips = [ (a,b,c) | c<-[1..10], b<-[1..c], a<-[1..b]
+                        , a^2+b^2==c^2 ]
+-- Pythagorean triples up to x
+pythTripsTo x = [ (a,b,c) | c<-[1..x], b<-[1..c], a<-[1..b]
+                        , a^2+b^2==c^2 ]
+
+
 -- can compare lists of different sizes
--- [1,2] == [5,5,5,5,5,5]  returns false
+-- [1,2] == [5,5,5,5,5,5]  returns false, same type even though different length
 -- (1,2) == (5,5,5,5,5,5) throws an error.. different types
 -- (1,2) == ("a",2) also throws an error.. different types
 
