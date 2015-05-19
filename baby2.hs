@@ -38,3 +38,16 @@ multTable x = [[ a*b | a <- [1..x]] | b <- [1..x]]
 -- [1,2] == [5,5,5,5,5,5]  returns false
 -- (1,2) == (5,5,5,5,5,5) throws an error.. different types
 -- (1,2) == ("a",2) also throws an error.. different types
+
+f ls = head ls + length ls -- since length is Int, all of f needs to be Int
+
+-- can explicitly state this
+g :: [Int] -> Int
+g ls = head ls + length ls
+
+-- Note :t (/) and :t div
+--
+dividesEvenly :: Int -> Int -> Bool
+dividesEvenly x y = (y `div` x) * x == y
+
+
