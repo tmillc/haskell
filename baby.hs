@@ -1,3 +1,6 @@
+-- assorted random stuff while I learn haskell
+--
+
 import Data.Char
 
 doubleMe x = x + x

@@ -1,0 +1,4 @@
+-- At this point:
+-- Peter Drake youtube, at Haskell 4: Function Syntax
+-- U of Virginia CS1501: Lecture 3 (types?)
+-- LYAH:  types and typeclasses
