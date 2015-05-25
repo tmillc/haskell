@@ -1,31 +1,45 @@
 import Data.Char
-{- example usage
-Prelude> cipher "hello" 13
-"uryyb"
-'a' to 'z': 97 to 122
-'A' to 'Z': 65 to 90
-' ' : 32
-GHC.Base.ord :: Char -> Int
-GHC.Char.chr :: Int -> Char
--}
--- hinted solution
+import Data.Ix
+-- 'a' to 'z': 97 to 122
+-- 'A' to 'Z': 65 to 90
+
+
 cipher :: [Char] -> Int -> [Char]
 cipher [] _ = []
--- cipher "h:ello" 13 = (rotate 'h' 13) : (cipher "ello" 13)
---                     =       u         : (cipher "ello" 13)
-cipher (s:ss) n = (rotate s n) : (cipher ss n)
+cipher xs n = [rotate x n | x <- xs]
+
 rotate :: Char -> Int -> Char
 rotate s n
-    | ((ord s) `elem` [97..122]) = chr ((((ord s) - 97 + n) `mod` 26) + 97)
-    | ((ord s) `elem` [65..90]) = chr ((((ord s) - 65 + n) `mod` 26) + 65)
+    | inRange ('a','z') s = chr ((((ord s) - 97 + n) `mod` 26) + 97)
+    | inRange ('A','Z') s = chr ((((ord s) - 65 + n) `mod` 26) + 65)
     | otherwise = '!' -- only handling alphabet for now
 
 
--- Alternate approach unfinished
--- want to express 'rotate 10' and 'cipher 10'
+-- Second implementation, switch argument order and use "map"
 cipher' :: Int -> [Char] -> [Char]
-cipher' n s = "hi"
--- cipher' n = map (rotate n)
+cipher' n = map (rotate' n) 
 rotate' :: Int -> Char -> Char
-rotate' n s = 'A'
+rotate' n s
+    | inRange ('a','z') s = chr ((((ord s) - 97 + n) `mod` 26) + 97)
+    | inRange ('A','Z') s = chr ((((ord s) - 65 + n) `mod` 26) + 65)
+    | otherwise = '!' -- only handling alphabet for now
 
+-- third implementation, 
+cipher'' :: Int -> [Char] -> [Char]
+rotate'' :: Int -> Char -> Char
+let2int :: Char -> Int  -- lowercase
+int2let :: Int -> Char  -- lowercase
+let2int' :: Char -> Int -- uppercase
+int2let' :: Int -> Char -- uppercase
+
+cipher'' n = map (rotate'' n)
+-- cipher'' n xs = map (rotate'' n) xs   -- can drop the xs
+rotate'' n s
+    | inRange ('a', 'z') s = int2let ((let2int s + n) `mod` 26)
+    | inRange ('A', 'Z') s = int2let' ((let2int' s + n) `mod` 26)
+    | otherwise = '!'
+
+let2int c = ord c - ord 'a'  -- lowercase
+let2int' c = ord c - ord 'A' -- uppercase
+int2let n = chr (ord 'a' + n)  -- lowercase
+int2let' n = chr (ord 'A' + n) -- uppercase
