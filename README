@@ -1,2 +1,3 @@
 Haskell stuff
 switched from the baby?.hs scheme to per-tutorial since they cover the same ground and I work on one for awhile then catch up in others, also individual files like caesar and fac
+downgrading LYAH, made dirs for NICTA, u virginia, CIS194. Standalone files (factorial, caeser, etc) in main dir, projects will get own dir
